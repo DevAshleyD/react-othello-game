@@ -1,0 +1,197 @@
+
+:root{
+  font-size: 15px;
+}
+.App {
+  display: grid;
+  text-align: center;
+  background: #3275BB;
+  height: 100%;
+  grid-template-columns: 20% 60% 20%;
+  grid-template-areas: "head head head" 
+                        "w board b"
+                        "footer footer footer";
+  align-items: center;
+}
+
+.App-header {
+  background-color: #123F6E;
+  align-self: stretch;
+  padding: 20px;
+  color: white;
+  grid-area: head;
+}
+
+.App-title {
+  font-size: 1.5em;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.board{
+  display: grid;
+  align-self: center;
+  justify-self: center;
+  grid-template: repeat(8, 8vh) / repeat(8, 8vh) ;
+  grid-auto-columns: 12.5vh;
+  grid-auto-rows: 12.5vh;
+  grid-area: board;
+}
+
+.box{
+  background: #123f6e;
+  border: solid 2px #3275BB;
+  transition: background 1.25s; 
+  
+}
+.box:hover{
+  background: #222E3B;
+  transition-duration: .35s;
+}
+
+.playable{
+  background: #C63B31;
+}
+.playable:hover{
+  background: #862821;
+}
+.score{
+  position: relative;
+  grid-area: score;
+  font-size: 10rem;
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;  
+}
+.score::before{
+  content:'';
+  background: #31C66F;
+  position: absolute;
+  top: 0;
+  height: 1vw;
+  width: 0%;
+  transition: width .75s ease-in-out; 
+  
+}
+.score--white{
+  grid-area: w;
+  background: white;  
+  color: black;
+}
+.score--white::before{
+  right: 0;
+}  
+.score--black{
+  grid-area: b;
+  color: white;  
+  background: black;
+}
+.score--black::before{
+  left:0
+}
+.score--active::before{
+  width: 100%;
+  transition-delay: .7s;
+}
+
+.options-button{
+  position: fixed;
+  right: 15px;
+  font-size: 2em;
+}
+.options{
+  height: 100vh;
+  width: 35vw;
+  position: fixed;
+  top: 0;
+  right: -35vw;
+  background:white;
+  color: black;
+  transition: right .32s ease-in;
+  z-index: 1;
+}
+.options{
+  cursor: pointer
+}
+.version{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  color: darkgray;
+}
+input[type="checkbox"]:checked + .options{
+  right: 0;
+}
+.collection-item{
+  display: block
+}
+
+.footer{
+  display: grid;
+  grid-template-columns: 50% 50%;
+  background: #222E3B;
+  color:darkgrey;
+  align-items: center;
+  grid-area: footer;
+  align-self: stretch;
+  padding: 2rem 0;
+}
+.social-icons{
+  display: grid;
+  grid-template: repeat(1, 1fr) / repeat(2, 1fr);
+  align-items: center;
+}
+.fa-twitter{
+  grid-area: t
+}
+.fa-github{
+  grid-area: g
+}
+@media screen and (max-width: 615px){
+  
+  :root{
+    font-size: 5px;
+  }
+  .App{
+    grid-template-columns: 50% 50%;
+    grid-template-areas: "head head"
+                        "w b" 
+                        "board board"
+                        "footer footer";
+    grid-auto-rows: auto;
+  }
+  .App-header{
+    padding: 3px;
+  }
+ 
+}
+
+@media screen and (orientation: portrait ){
+  .App{
+    grid-template-columns: 50% 50%;
+    grid-template-areas: "head head"
+                        "w b" 
+                        "board board"
+                        "footer footer";
+    grid-auto-rows: auto;
+  }
+  .board{
+    grid-template: repeat(8, 12.5vw) / repeat(8, 12.5vw) ;
+  
+  }
+  
+}
+@media screen and (orientation: portrait ) and (max-width: 615px){
+  .App-title{
+    width: 80%;
+  } 
+}
